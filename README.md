@@ -7,9 +7,11 @@ pip install -r requirements.txt
 ```
 ## Usage
 ```python
-from summarizer import Summarizer
-summarizer = Summarizer(file_path='example.txt')
-print(summarizer.summarize())
+from src.file_loader import FileLoader
+from src.summarizer import Summarizer
+
+text = FileLoader(file_path='example.txt').load()
+print(Summarizer(num_sentences=5).summarize(text))
 ```
 ## Architecture
 ```mermaid
@@ -23,6 +25,8 @@ C -->|Output| D[Console]
 SummarizePro/
 |---- src/
 |       |---- __init__.py
+|       |---- base.py
+|       |---- file_loader.py
 |       |---- summarizer.py
 |---- main.py
 |---- requirements.txt
